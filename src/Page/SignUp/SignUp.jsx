@@ -103,7 +103,7 @@ class SignUp extends Component {
         
         return (
             <div className="SignUp">
-                <form name = "singup" method = "post" onSubmit = {callAcountApi()}>
+                <form name = "singup" method = "post" onSubmit = {this.callAcountApi()}>
                 <table border = "1">
                     <tr>
                         <td>ID : </td>
