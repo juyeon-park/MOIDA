@@ -20,6 +20,7 @@ class SignUp extends Component {
         this.setState({
             id : e.target.value
         })
+        
         console.log(this.state.id);
     }
 
@@ -27,6 +28,7 @@ class SignUp extends Component {
         this.setState({
             password : e.target.value
         })
+        
         console.log(this.state.password);
     }
 
@@ -34,6 +36,7 @@ class SignUp extends Component {
         this.setState({
             passwordCheck : e.target.value
         })
+        
         console.log(this.state.passwordCheck);
     }
 
@@ -48,6 +51,7 @@ class SignUp extends Component {
         this.setState({
             email : e.target.value
         })
+        
         console.log(this.state.email);
     }
 
@@ -55,6 +59,7 @@ class SignUp extends Component {
         this.setState({
             domain : e.target.value
         })
+        
         console.log(this.state.domain);
     }
 
@@ -71,8 +76,12 @@ class SignUp extends Component {
         }
     }
 
-    callSwToolListApi = async () => {
-        axios.post('/SignUp', {
+    // onClickButton = async () => {
+    //     await axios.get("http://localhost:5000/SignUp").then((res) => console.log(res.data.test))
+    // }
+
+    callAcountApi = async () => {
+        await axios.post('http://localhost:5000/SignUp', {
         })
         .then( response => {
             try {
@@ -82,6 +91,7 @@ class SignUp extends Component {
                 this.setState({ name: this.state.name });
                 this.setState({ email: this.state.email });
                 this.setState({ domain: this.state.domain });
+                console.log("zz");
             } catch (error) {
                 alert('작업중 오류가 발생하였습니다.');
             }
@@ -89,23 +99,11 @@ class SignUp extends Component {
         .catch( error => {alert('작업중 오류가 발생하였습니다.');return false;} );
     }
 
-    // select_domain(){
-    //     var frm = document.signup;
-    //     if (frm.domain.value ==){
-    //       $('#edomain').val("");
-    //       $('#edomain').disabled = false;
-    //     }
-    //     else{
-    //       $('#edomain').val(frm.domain.value);
-    //       $('#edomain').attr("readonly", true);
-    //     }
-    //     }
-
     render() {
         
         return (
             <div className="SignUp">
-                <form name = "singup" method = "post">
+                <form name = "singup" method = "post" onSubmit = {callAcountApi()}>
                 <table border = "1">
                     <tr>
                         <td>ID : </td>
