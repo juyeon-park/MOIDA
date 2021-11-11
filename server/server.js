@@ -1,13 +1,30 @@
 const fs = require('fs');
 const express = require('express');
+const bodyParser=require('body-parser');
 const app = express();
+const port=process.env.PORT || 5000;
+const cors = require('cors');
+app.use(cors());
 
-const groupMember = require('./Routes/GroupMember');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+const myTodo = require('./Routes/MyTodo.js');
+app.use('/myTodo', myTodo);
+
+const myGroupList = require('./Routes/MyGroupList.js');
+app.use('/myGroupList', myGroupList);
+
+const makeGroup = require('./Routes/MakeGroup.js');
+app.use('/makeGroup', makeGroup);
+
+const groupMember = require('./Routes/GroupMember.js');
 app.use('/groupMember', groupMember);
 
-app.listen(5000, () => console.log('express server is listening on port 5000'));
 
-const data=fs.readFileSync('/.database.json');
+app.listen(port, () => console.log('express server is listening on port 5000'));
+
+const data=fs.readFileSync('./database/database.json');
 const conf = JSON.parse(data);
 const mysql = require('mysql');
 
